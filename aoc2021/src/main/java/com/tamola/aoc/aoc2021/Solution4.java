@@ -38,7 +38,6 @@ public class Solution4 {
         List<String> inDatz = readInput(INPUT_URI);
         List<Integer> bingoDrawNumbers = readBingoDrawNumbers(inDatz.get(0));
         List<Map<Integer, int[]>> bingoBoardNumberLocations = readBingoBoardNumberLocations(inDatz.subList(1, inDatz.size()));
-        //System.out.println("bingoBoardNumberLocations = " + bingoBoardNumberLocations.toString() + " size = " + bingoBoardNumberLocations.size());
         List<boolean[][]> bingoBoards = makeBingoBoards(bingoBoardNumberLocations.size());
         int[] winner = new int[2]; // [board number, winning number]
         for (int i = 0; i < bingoDrawNumbers.size(); i++) {
@@ -58,14 +57,12 @@ public class Solution4 {
                 break;
             }
         }
-        //System.out.println(Arrays.toString(winner));
         System.out.println(computeBoardScore(bingoBoardNumberLocations.get(winner[0]), bingoBoards.get(winner[0]), winner[1]));
     }
     public void runPart2() {
         List<String> inDatz = readInput(INPUT_URI);
         List<Integer> bingoDrawNumbers = readBingoDrawNumbers(inDatz.get(0));
         List<Map<Integer, int[]>> bingoBoardNumberLocations = readBingoBoardNumberLocations(inDatz.subList(1, inDatz.size()));
-        //System.out.println("bingoBoardNumberLocations = " + bingoBoardNumberLocations.toString() + " size = " + bingoBoardNumberLocations.size());
         List<boolean[][]> bingoBoards = makeBingoBoards(bingoBoardNumberLocations.size());
         Stack<int[]> winnerz = new Stack<>();
         Set<Integer> winnerBoardz = new HashSet<>();
@@ -85,16 +82,6 @@ public class Solution4 {
                 }
             }
         }
-        /*
-        System.out.println(Arrays.toString(winnerz.peek()));
-        //System.out.println(Arrays.toString(bingoBoards.get(winnerz.peek()[0])));
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                System.out.print(bingoBoards.get(winnerz.peek()[0])[i][j] + " ");
-            }
-            System.out.println("");
-        }
-         */
         System.out.println(computeBoardScore(bingoBoardNumberLocations.get(winnerz.peek()[0]), bingoBoards.get(winnerz.peek()[0]), winnerz.peek()[1]));
     }
     private int computeBoardScore(Map<Integer, int[]> numberLocations, boolean[][] board, int winningNumber) {
@@ -150,7 +137,6 @@ public class Solution4 {
                 continue;
             }
             String[] n = l.split("\\s+");
-            //System.out.println("n = " + Arrays.toString(n));
             List<Integer> nl = new ArrayList<>();
             for (int j = 0; j < n.length; j++) {
                 if (n[j].isEmpty()) {
@@ -158,7 +144,6 @@ public class Solution4 {
                 }
                 nl.add(Integer.parseInt(n[j]));
             }
-            //System.out.println("i = " + i + " nl = " + nl.toString());
             for (int j = 0; j < nl.size(); j++) {
                 rez.get(rez.size() - 1).put(nl.get(j), new int[] { i, j });
             }
