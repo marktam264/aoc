@@ -63,7 +63,7 @@ public class Solution3 {
         List<String> inDatz = readInput(INPUT_URI);
         int idx = 0;
         int len = inDatz.get(0).length();
-        List<String> oxyInDatz = new ArrayList<>(inDatz);
+        List<String> oxyInDatz = inDatz;
         while (idx < len) {
             if (oxyInDatz.size() <= 1) {
                 break;
@@ -83,7 +83,7 @@ public class Solution3 {
         }
         int oxyRating = Integer.parseInt(oxyInDatz.get(0), 2);
         idx = 0;
-        List<String> co2InDatz = new ArrayList<>(inDatz);
+        List<String> co2InDatz = inDatz;
         while (idx < len) {
             if (co2InDatz.size() <= 1) {
                 break;
