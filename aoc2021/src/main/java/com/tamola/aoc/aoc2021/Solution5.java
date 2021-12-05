@@ -30,15 +30,7 @@ public class Solution5 {
         makeLinePointsList(inDatz, linePointList, boundzData);
         int[][] matrix = new int[boundzData[1] + 1][boundzData[0] + 1];
         populateMatrixWithLines1(matrix, linePointList);
-        int overlaps = 0;
-        for (int i = 0; i < boundzData[1] + 1; i++) {
-            for (int j = 0; j < boundzData[0] + 1; j++) {
-                if (matrix[i][j] > 1) {
-                    overlaps++;
-                }
-            }
-        }
-        System.out.println(overlaps);
+        System.out.println(countOverlaps(matrix));
     }
     private void runPart2() {
         List<String> inDatz = readInput(INPUT_URI);
@@ -47,15 +39,18 @@ public class Solution5 {
         makeLinePointsList(inDatz, linePointList, boundzData);
         int[][] matrix = new int[boundzData[1] + 1][boundzData[0] + 1];
         populateMatrixWithLines2(matrix, linePointList);
+        System.out.println(countOverlaps(matrix));
+    }
+    private int countOverlaps(int[][] matrix) {
         int overlaps = 0;
-        for (int i = 0; i < boundzData[1] + 1; i++) {
-            for (int j = 0; j < boundzData[0] + 1; j++) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
                 if (matrix[i][j] > 1) {
                     overlaps++;
                 }
             }
         }
-        System.out.println(overlaps);
+        return overlaps;       
     }
     /**
      * converts each line point (in x,y) to matrix coords (r,c)
