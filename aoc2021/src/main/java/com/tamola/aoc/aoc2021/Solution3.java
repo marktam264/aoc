@@ -48,8 +48,6 @@ public class Solution3 {
         for (int i = 0; i < gammaStr.length(); i++) {
             epsilonStr.append(gammaStr.charAt(i) == '0' ? '1' : '0');
         }
-        //System.out.println(Integer.parseInt(gammaStr.toString(), 2));
-        //System.out.println(Integer.parseInt(epsilonStr.toString(), 2));
         System.out.println(Integer.parseInt(gammaStr.toString(), 2) * Integer.parseInt(epsilonStr.toString(), 2));
     }
     /**
@@ -83,13 +81,10 @@ public class Solution3 {
             }
             idx++;
         }
-        //System.out.println(Integer.parseInt(oxyInDatz.get(0), 2));
         int oxyRating = Integer.parseInt(oxyInDatz.get(0), 2);
         idx = 0;
         List<String> co2InDatz = new ArrayList<>(inDatz);
-        //System.out.println(co2InDatz.toString());
         while (idx < len) {
-            //System.out.println("idx = " + idx);
             if (co2InDatz.size() <= 1) {
                 break;
             }
@@ -104,10 +99,8 @@ public class Solution3 {
             } else {
                 co2InDatz = charListz.get('0');
             }
-            //System.out.println(co2InDatz.size());
             idx++;
         }
-        //System.out.println(Integer.parseInt(co2InDatz.get(0), 2));
         int co2Rating = Integer.parseInt(co2InDatz.get(0), 2);
         System.out.println(oxyRating * co2Rating);
     }
