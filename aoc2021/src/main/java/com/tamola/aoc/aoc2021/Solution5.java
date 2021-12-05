@@ -28,14 +28,8 @@ public class Solution5 {
         List<int[]> linePointList = new ArrayList<>(); // 0: x1, 1: y1, 2: x2, 3: y2
         int[] boundzData = new int[2]; // 0: maxX, 1: maxY
         makeLinePointsList(inDatz, linePointList, boundzData);
-        //System.out.println("boundzData = " + Arrays.toString(boundzData));
         int[][] matrix = new int[boundzData[1] + 1][boundzData[0] + 1];
         populateMatrixWithLines1(matrix, linePointList);
-        /*
-        for (int i = 0; i < matrix.length; i++) {
-            System.out.println(Arrays.toString(matrix[i]));
-        }
-         */
         int overlaps = 0;
         for (int i = 0; i < boundzData[1] + 1; i++) {
             for (int j = 0; j < boundzData[0] + 1; j++) {
@@ -51,14 +45,8 @@ public class Solution5 {
         List<int[]> linePointList = new ArrayList<>(); // 0: x1, 1: y1, 2: x2, 3: y2
         int[] boundzData = new int[2]; // 0: maxX, 1: maxY
         makeLinePointsList(inDatz, linePointList, boundzData);
-        //System.out.println("boundzData = " + Arrays.toString(boundzData));
         int[][] matrix = new int[boundzData[1] + 1][boundzData[0] + 1];
         populateMatrixWithLines2(matrix, linePointList);
-        /*
-        for (int i = 0; i < matrix.length; i++) {
-            System.out.println(Arrays.toString(matrix[i]));
-        }
-         */
         int overlaps = 0;
         for (int i = 0; i < boundzData[1] + 1; i++) {
             for (int j = 0; j < boundzData[0] + 1; j++) {
@@ -80,7 +68,6 @@ public class Solution5 {
      */
     private void populateMatrixWithLines1(int[][] matrix, List<int[]> linePointList) {
         for (int[] endz : linePointList) {
-            //System.out.println("endz = " + Arrays.toString(endz));
             if (endz[0] == endz[2]) { // vertical line
                 int start = Math.min(endz[1], endz[3]);
                 int end = Math.max(endz[1], endz[3]);
@@ -98,7 +85,6 @@ public class Solution5 {
     }
     private void populateMatrixWithLines2(int[][] matrix, List<int[]> linePointList) {
         for (int[] endz : linePointList) {
-            //System.out.println("endz = " + Arrays.toString(endz));
             if (endz[0] == endz[2]) { // vertical line
                 int start = Math.min(endz[1], endz[3]);
                 int end = Math.max(endz[1], endz[3]);
@@ -171,7 +157,6 @@ public class Solution5 {
         }    
         return inDatz;
     }
-
     public static void main(String[] args) {
         Solution5 soln = new Solution5();
         soln.runPart1();
