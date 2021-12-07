@@ -66,8 +66,8 @@ public class Solution6 {
                     fishCountPerDay[i] = 0;
                     fishCountPerDay[9] = count;
                 } else if (i == 9) {
-                    fishCountPerDay[6] += fishCountPerDay[i];
-                    fishCountPerDay[8] += fishCountPerDay[i];
+                    fishCountPerDay[6] += count;
+                    fishCountPerDay[8] += count;
                     fishCountPerDay[i] = 0;
                 } else {
                     fishCountPerDay[i - 1] = count;
