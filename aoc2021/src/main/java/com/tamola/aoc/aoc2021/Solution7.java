@@ -55,7 +55,7 @@ public class Solution7 {
      *  - do a binary search on crab positions and choose the half that has more crabs in it?
      *      - no
      *  - ???
-     *  - just doing brute force, checked data set and doesn't look to big
+     *  - just doing brute force, checked data set and doesn't look too big
      *      - O(n^2)
      */
     public void runPart2() {
