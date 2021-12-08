@@ -35,19 +35,10 @@ public class Solution7 {
             maxHeap.offer(e);
         }
         int minCost = Integer.MAX_VALUE;
-        //int minPosition = -1;
         while (!maxHeap.isEmpty()) {
             Map.Entry<Integer, Integer> e = maxHeap.poll();
-            /*
-            int cost = computeCost(e.getKey(), crabs);
-            if (cost < minCost) {
-                minCost = cost;
-                minPosition = e.getKey();
-            }
-             */
             minCost = Math.min(minCost, computeCost1(e.getKey(), crabs));
         }
-        //System.out.println(minCost + "," + minPosition);
         System.out.println(minCost);
     }
     /**
@@ -64,7 +55,8 @@ public class Solution7 {
      *  - do a binary search on crab positions and choose the half that has more crabs in it?
      *      - no
      *  - ???
-     *  
+     *  - just doing brute force, checked data set and doesn't look to big
+     *      - O(n^2)
      */
     public void runPart2() {
         List<String> inDatz = readInput(INPUT_URI);
@@ -79,7 +71,6 @@ public class Solution7 {
             max = Math.max(max, c);
         }
         //long avgPos = Math.round((double)sum / (double)crabs.size());
-        //System.out.println(computeCost2((int)avgPos, crabs));
         //System.out.println("min = " + min + " max = " + max + " avgPos = " + avgPos);
         int minCost = Integer.MAX_VALUE;
         for (int i = min; i <= max; i++) {
