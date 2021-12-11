@@ -103,15 +103,12 @@ public class Solution8 {
         List<List<String>> jumbledDigz = new ArrayList<>();
         List<List<String>> jumbledDisplayOutz = new ArrayList<>();
         makeJumbledDigzAndJumbledDisplayOutz(inDatz, jumbledDigz, jumbledDisplayOutz);
-        //System.out.println("jumbledDigz = " + jumbledDigz.toString());
-        //System.out.println("jumbledDisplayOutz = " + jumbledDisplayOutz.toString());
         List<Integer> realDisplayOutz = new ArrayList<>();
         for (int i = 0; i < jumbledDisplayOutz.size(); i++) {
             Map<Character, Character> jumbledToNormal = makeJumbledToNormalMapping(jumbledDigz.get(i));
             int realDisplayOut = convert(jumbledDisplayOutz.get(i), jumbledToNormal);
             realDisplayOutz.add(realDisplayOut);
         }
-        //System.out.println("realDisplayOutz = " + realDisplayOutz.toString());
         int sum = 0;
         for (int i : realDisplayOutz) {
             sum += i;
@@ -135,13 +132,11 @@ public class Solution8 {
                 d.append(jumbledToNormal.get(jd.charAt(c)));
             }
             dispDigz.add(d.toString());
-            //display.append(d.toString() + " ");
         }
         StringBuilder display = new StringBuilder();
         for (String d : dispDigz) {
             display.append(digitize(d));
         }
-        //System.out.println("display = " + display);
         return Integer.parseInt(display.toString());
     }
     private void makeJumbledDigzAndJumbledDisplayOutz(List<String> inDatz, List<List<String>> jumbledDigz, List<List<String>> jumbledDisplayOutz) {
@@ -162,7 +157,6 @@ public class Solution8 {
         }
     }
     private Map<Character, Character> makeJumbledToNormalMapping(List<String> jumbledDigz) {
-        //System.out.println("jumbledDigz = " + jumbledDigz.toString());
         Map<Character, Character> m = new HashMap<>();
         // find 1 and 7
         String one = null;
@@ -174,7 +168,6 @@ public class Solution8 {
                 seven = jd;
             }
         }
-        //System.out.println("one = " + one + " seven = " + seven);
         // use 1 and 7 to find top segment
         char top = ' ';
         Set<Character> oneSegz = new HashSet<>();
@@ -188,7 +181,6 @@ public class Solution8 {
         }
         // map jumbled character representing top segment to normal character representation of top segment
         m.put(top, 'a');
-        //System.out.println("m = " + m.toString());
 
         // find 1, 6 and 9; also find 4 for use later
         String four = null;
@@ -200,7 +192,6 @@ public class Solution8 {
                 four = jd;
             }
         }
-        //System.out.println("n069z = " + n069z.toString() + " four = " + four);
         // use 4 to figure out which jumbled letters correspond to top left and middle
         // segments; 0 is the only one out of 0, 6 and 9 that doesn't have a middle segment;
         // so we pick a char out of what we found are the top left and middle segments,
@@ -212,7 +203,6 @@ public class Solution8 {
                 topLeftAndMiddle.add(c);
             }
         }
-        //System.out.println("topLeftAndMiddle = " + topLeftAndMiddle.toString());
 
         char middle = ' ';
         char topLeft = ' ';
@@ -228,7 +218,6 @@ public class Solution8 {
                 break;
             }
         }
-        //System.out.println("zeroIdx = " + zeroIdx);
         if (foundCandidateMiddleSegment) {
             middle = topLeftAndMiddle.get(0); 
             topLeft = topLeftAndMiddle.get(1);
@@ -244,10 +233,8 @@ public class Solution8 {
                 zeroIdx = i;
             }
         }
-        //System.out.println("zeroIdx = " + zeroIdx);
         m.put(middle, 'd');
         m.put(topLeft, 'b');
-        //System.out.println("m = " + m.toString());
 
         // NOTES:
         // use zeroIdx to copy only the string for 6 and 9 to a list
@@ -285,7 +272,6 @@ public class Solution8 {
                 break;
             }
         }
-        //System.out.println("sixIdx = " + sixIdx);
         if (foundCandidateTopRightSegment) {
             topRight = topRightAndBottomRight.get(0);
             bottomRight = topRightAndBottomRight.get(1);
@@ -301,10 +287,8 @@ public class Solution8 {
                 sixIdx = i;
             }
         }
-        //System.out.println("sixIdx = " + sixIdx);
         m.put(topRight, 'c');
         m.put(bottomRight, 'f');
-        //System.out.println("m = " + m.toString());
 
         // use 6 and 9 to find the bottom and bottom left segments
         char bottom = ' ';
@@ -322,8 +306,7 @@ public class Solution8 {
                 nine = n69z.get(i);
             }
         }
-        //System.out.println("six = " + six + " nine = " + nine);
-        // bottom segment is the only segement of 9 that isn't already mapped
+        // bottom segment is the only segment of 9 that isn't already mapped
         for (char c : nine.toCharArray()) {
             if (!m.containsKey(c)) {
                 bottom = c;
@@ -338,8 +321,8 @@ public class Solution8 {
             }
         }
         m.put(bottomLeft, 'e');
-        //System.out.println("m = " + m.toString());
 
+        //System.out.println("m = " + m);
         return m;
     }
     /**
