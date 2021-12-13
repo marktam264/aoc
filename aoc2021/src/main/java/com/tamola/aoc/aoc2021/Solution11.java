@@ -45,17 +45,20 @@ public class Solution11 {
             {-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}
         };
         while (step < maxSteps) {
-            System.out.println("octopuses = " + octopuses.toString());
+            System.out.println("(pre) step = " + step + " octopuses = ");
+            for (List<Integer> l : octopuses) {
+                System.out.println(l.toString());
+            }
             for (int i = 0; i < octopuses.size(); i++) {
                 for (int j = 0; j < octopuses.get(0).size(); j++) {
+                    octopuses.get(i).set(j, octopuses.get(i).get(j) + 1);
                     if (octopuses.get(i).get(j) > 9) {
                         q.offer(new int[] { i, j });
                     }
-                    octopuses.get(i).set(j, octopuses.get(i).get(j) + 1);
                 }
             }
             // for octopus in the q, flash it and increment all adjacents
-            // by 1 (and if those will flash, add those to tho q); then
+            // by 1 (and if those will flash, add those to the q); then
             // set its energy level to 0
             Map<Integer, Set<Integer>> flashedz = new HashMap<>();
             while (!q.isEmpty()) {
@@ -73,15 +76,19 @@ public class Solution11 {
                             if (flashedz.containsKey(nextR) && flashedz.get(nextR).contains(nextC)) {
                                 continue;
                             }
+                            octopuses.get(nextR).set(nextC, octopuses.get(nextR).get(nextC) + 1);
                             if (octopuses.get(nextR).get(nextC) > 9) {
                                 q.offer(new int[] { nextR, nextC });
                             }
-                            octopuses.get(nextR).set(nextC, octopuses.get(nextR).get(nextC) + 1);
                         }
                     }
                 }
             }
             step++;
+            System.out.println("(post) step = " + step + " octopuses = ");
+            for (List<Integer> l : octopuses) {
+                System.out.println(l.toString());
+            }
         }
         System.out.println(flashCount);
     }
