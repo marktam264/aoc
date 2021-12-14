@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,9 +15,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class Solution11 {
-    private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/sampleinput11.txt";
+    //private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/sampleinput11.txt";
     //private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/sampleinput8_2.txt";
-    //private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/input11.txt";
+    private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/input11.txt";
     /**
      * algo:
      *  - simulate octopus flashing
@@ -40,7 +41,7 @@ public class Solution11 {
         Queue<int[]> q = new LinkedList<>();
         int step = 0;
         int flashCount = 0;
-        int maxSteps = 5;
+        int maxSteps = 100;
         int[][] dirz = new int[][] {
             {-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}
         };
@@ -62,20 +63,33 @@ public class Solution11 {
             // set its energy level to 0
             Map<Integer, Set<Integer>> flashedz = new HashMap<>();
             while (!q.isEmpty()) {
+                System.out.println("(mid) step = " + step);
+                System.out.println("flashedz = " + flashedz.toString());
+                System.out.println("octopuses = ");
+                for (List<Integer> l : octopuses) {
+                    System.out.println(l.toString());
+                }    
+                printQ(q);
                 int sz = q.size();
                 for (int i = 0; i < sz; i++) {
                     int[] octo = q.poll();
+                    //System.out.println("octo = " + Arrays.toString(octo));
+                    if (flashedz.containsKey(octo[0]) && flashedz.get(octo[0]).contains(octo[1])) {
+                        continue;
+                    }
                     octopuses.get(octo[0]).set(octo[1], 0);
                     flashCount++;
                     flashedz.computeIfAbsent(octo[0], k -> new HashSet<>()).add(octo[1]);
-                    octopuses.get(octo[0]).set(octo[1], 0);
                     for (int[] dir : dirz) {
                         int nextR = octo[0] + dir[0];
                         int nextC = octo[1] + dir[1];
                         if (nextR >= 0 && nextR < octopuses.size() && nextC >= 0 && nextC < octopuses.get(0).size()) {
+                            
                             if (flashedz.containsKey(nextR) && flashedz.get(nextR).contains(nextC)) {
+                                //System.out.println("got here...");
                                 continue;
                             }
+                            
                             octopuses.get(nextR).set(nextC, octopuses.get(nextR).get(nextC) + 1);
                             if (octopuses.get(nextR).get(nextC) > 9) {
                                 q.offer(new int[] { nextR, nextC });
@@ -111,6 +125,15 @@ public class Solution11 {
             ex.printStackTrace();
         }    
         return inDatz;
+    }
+    private void printQ(Queue<int[]> q) {
+        System.out.println("q = ");
+        var it = q.iterator();
+        while (it.hasNext()) {
+            var e = it.next();
+            System.out.print(Arrays.toString(e) + " ");
+        }
+        System.out.println();
     }
     public static void main(String[] args) {
         Solution11 soln = new Solution11();
