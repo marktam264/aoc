@@ -16,9 +16,7 @@ public class Solution15 {
     //private static String INPUT_URI = "aoc2021/src/main/java/com/tamola/aoc/aoc2021/input15.txt";
     /**
      * algo:
-     *  - some kind of greedy algo that looks at each alternative and sums up
-     *      risk for each alternative and then picks the one with the lowest
-     *      risk
+     *  - similar to leetcode problem called "min path sum"
      */
     private void run() {
         List<String> inDatz = readInput(INPUT_URI);
